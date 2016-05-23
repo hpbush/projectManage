@@ -449,3 +449,4 @@ class App extends React.Component{
   }
 }
 React.render(<App folderRoots = {folderRoots}/>, document.getElementById('app'));
+console.log("test");
