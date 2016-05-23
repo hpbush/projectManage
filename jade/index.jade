@@ -1,0 +1,10 @@
+html
+  head
+    title Project Manager
+    link(rel="stylesheet" type="text/css" href="css/main.css")
+  body
+    .page
+      include components/header.jade
+      .body(id = "body")
+        .app(id = 'app')
+  script(src = 'build/app.js')

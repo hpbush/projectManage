@@ -1,0 +1,174 @@
+//define mixins
+@mixin columnData($widthPercent, $numCol, $size)
+  position: relative
+  float: left
+  width: $widthPercent
+  min-width: ($size / 12) * $numCol
+  //border: 1px solid blue
+  //display: flex
+
+@mixin container($containSize)
+  position: relative
+  display: flex
+  text-align: center
+  //border: 5px solid green
+  min-width: $containSize
+
+//define variables
+
+//define style rules
+.container-xs
+  +container(640px)
+
+.container-s
+  +container(750px)
+
+.container-m
+  +container(1080px)
+
+.container-l
+  +container(2048px)
+
+.col-lg-12
+  +columnData(12/12*100%,12, 2048px)
+
+.col-m-12
+  +columnData(12/12*100%,12,1080px)
+
+.col-sm-12
+  +columnData(12/12*100%,12,750px)
+
+.col-xs-12
+  +columnData(12/12*100%,12,640px)
+
+.col-lg-11
+  +columnData(11/12*100%,11,2048px)
+
+.col-m-11
+  +columnData(11/12*100%,11,1080px)
+
+.col-sm-11
+  +columnData(11/12*100%,11,750px)
+
+.col-xs-11
+  +columnData(11/12*100%,11,640px)
+
+.col-lg-10
+  +columnData(10/12*100%,10,2048px)
+
+.col-m-10
+  +columnData(10/12*100%,10,1080px)
+
+.col-sm-10
+  +columnData(10/12*100%,10,750px)
+
+.col-xs-10
+  +columnData(10/12*100%,10,640px)
+
+.col-lg-9
+  +columnData(9/12*100%,9,2048px)
+
+.col-m-9
+  +columnData(9/12*100%,9,1080px)
+
+.col-sm-9
+  +columnData(9/12*100%,9,750px)
+
+.col-xs-9
+  +columnData(9/12*100%,9,640px)
+
+.col-lg-8
+  +columnData(8/12*100%,8,2048px)
+
+.col-m-8
+  +columnData(8/12*100%,8,1080px)
+
+.col-sm-8
+  +columnData(8/12*100%,8,750px)
+
+.col-xs-8
+  +columnData(8/12*100%,8,640px)
+
+.col-lg-7
+  +columnData(7/12*100%,7,2048px)
+
+.col-m-7
+  +columnData(7/12*100%,7,1080px)
+
+.col-sm-7
+  +columnData(7/12*100%,7,750px)
+
+.col-xs-7
+  +columnData(7/12*100%,7,640px)
+
+.col-lg-6
+  +columnData(6/12*100%,6,2048px)
+
+.col-m-6
+  +columnData(6/12*100%,6,1080px)
+
+.col-sm-6
+  +columnData(6/12*100%,6,750px)
+
+.col-xs-6
+  +columnData(6/12*100%,6,640px)
+
+.col-lg-5
+  +columnData(5/12*100%,5,2048px)
+
+.col-m-5
+  +columnData(5/12*100%,5,1080px)
+
+.col-sm-5
+  +columnData(5/12*100%,5,750px)
+
+.col-xs-5
+  +columnData(5/12*100%,5,640px)
+
+.col-lg-4
+  +columnData(4/12*100%,4,2048px)
+
+.col-m-4
+  +columnData(4/12*100%,4,1080px)
+
+.col-sm-4
+  +columnData(4/12*100%,4,750px)
+
+.col-xs-4
+  +columnData(4/12*100%,4,640px)
+
+.col-lg-3
+  +columnData(25%,3,2048px)
+
+.col-m-3
+  +columnData(25%,3,1080px)
+
+.col-sm-3
+  +columnData(25%,3,750px)
+
+.col-xs-3
+  +columnData(25%,3,630px)
+
+.col-lg-2
+  +columnData(2/12*100%,2,2048px)
+
+.col-m-2
+  +columnData(2/12*100%,2,1080px)
+
+.col-sm-2
+  +columnData(2/12*100%,2,750px)
+
+.col-xs-2
+  +columnData(2/12*100%,2,640px)
+
+.col-lg-1
+  +columnData(1/12*100%,1,2048px)
+
+.col-m-1
+  +columnData(1/12*100%,1,1080px)
+
+.col-sm-1
+  +columnData(1/12*100%,1,750px)
+
+.col-xs-1
+  +columnData(1/12*100%,1,640px)
