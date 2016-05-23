@@ -81,6 +81,9 @@ function findSelectionWrapper(startLevel, objKey, selFlag, addFlag, addType, dro
   return findSel(startLevel);
 }
 
+function getObjKey(){
+  let reactId = event.target.parentNode.dataset.reactid;
+}
 ///////////////////////////////////////////////////////////////////////////////
 //Define global variables
 ///////////////////////////////////////////////////////////////////////////////
@@ -215,6 +218,7 @@ class App extends React.Component{
     let type = 'Item';
     let owner = {};
     let level = 0;
+
     if(event.target.className === 'folderLevel'){
       type = 'Div';
       level =  parseInt(event.target.dataset.reactid.substring(event.target.dataset.reactid.indexOf('$') + 1), 10);
@@ -227,6 +231,8 @@ class App extends React.Component{
         reactId = target.dataset.reactid;
       }
       let objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$")+1)+1);
+
+
       let trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
       owner = trail[trail.length-1];
     }
@@ -449,3 +455,4 @@ class App extends React.Component{
   }
 }
 React.render(<App folderRoots = {folderRoots}/>, document.getElementById('app'));
+console.log('refactor');
