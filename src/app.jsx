@@ -81,8 +81,22 @@ function findSelectionWrapper(startLevel, objKey, selFlag, addFlag, addType, dro
   return findSel(startLevel);
 }
 
-function getObjKey(){
-  let reactId = event.target.parentNode.dataset.reactid;
+function getObjKey(e, context){
+  let reactId = null;
+  let objKey = null;
+  let target = e.target;
+  if(context === 'cMenu' || context === 'cMenu2'){
+    if(target.nodeName === 'SPAN' || context === 'cMenu2'){
+      reactId = target.parentNode.dataset.reactid;
+    }else if(target.nodeName === 'LI'){
+      reactId = target.dataset.reactid;
+    }
+    objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$")+1)+1);
+  }else if(context === 'folderRoot'){
+    reactId = e.target.parentNode.dataset.reactid;
+    objKey = reactId.substring(reactId.indexOf("$")+1);
+  }
+  return objKey;
 }
 ///////////////////////////////////////////////////////////////////////////////
 //Define global variables
@@ -142,8 +156,7 @@ class App extends React.Component{
   //////
   selectFolderRoot(event){
     if(event.target.getAttribute('class') === 'liSpan'){
-      let reactId = event.target.parentNode.dataset.reactid;
-      let objKey = reactId.substring(reactId.indexOf("$")+1);
+      let objKey = getObjKey(event, 'folderRoot');
       let selectedObj = {};
       //set and clear selection status for root
       for(let i = 0; i < this.props.folderRoots.length; i++){
@@ -223,16 +236,7 @@ class App extends React.Component{
       type = 'Div';
       level =  parseInt(event.target.dataset.reactid.substring(event.target.dataset.reactid.indexOf('$') + 1), 10);
     }else{
-      let target = event.target;
-      let reactId = '';
-      if(target.nodeName === 'SPAN'){
-        reactId = target.parentNode.dataset.reactid;
-      }else if(target.nodeName === 'LI'){
-        reactId = target.dataset.reactid;
-      }
-      let objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$")+1)+1);
-
-
+      let objKey = getObjKey(event, 'cMenu');
       let trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
       owner = trail[trail.length-1];
     }
@@ -266,9 +270,7 @@ class App extends React.Component{
   }
 
   cMenuFieldFocus(event){
-    let target = event.target;
-    let reactId = target.parentNode.dataset.reactid;
-    let objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$")+1)+1);
+    let objKey = getObjKey(event, 'cMenu2');
     let trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
     let r = trail[trail.length - 1];
     this.state.customContextMenu.owner = r;
@@ -293,14 +295,7 @@ class App extends React.Component{
   //Drag and Drop
   //////
   dragStartLi(event){
-    let target = event.target;
-    let reactId = null;
-    if(target.nodeName === 'SPAN'){
-      reactId = target.parentNode.dataset.reactid;
-    }else if(target.nodeName === 'LI'){
-      reactId = target.dataset.reactid;
-    }
-    let objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$")+1)+1);
+    let objKey = getObjKey(event, 'cMenu');
     let trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
     trail = trail[trail.length - 1];
     this.setState({
@@ -322,9 +317,7 @@ class App extends React.Component{
 
   dragOverLi(event){
     event.preventDefault();
-    let target = event.target;
-    let reactId = reactId = target.parentNode.dataset.reactid;
-    let objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$")+1)+1);
+    let objKey = getObjKey(event, 'cMenu2');
     if((this.state.dragAndDrop.objHovering === null || this.state.dragAndDrop.objHovering.key != objKey) && this.state.dragAndDrop.objDragging.key !== objKey){
       let trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
       trail = trail[trail.length - 1];

@@ -141,6 +141,23 @@
 	  return findSel(startLevel);
 	}
 
+	function getObjKey(e, context) {
+	  var reactId = null;
+	  var objKey = null;
+	  var target = e.target;
+	  if (context === 'cMenu' || context === 'cMenu2') {
+	    if (target.nodeName === 'SPAN' || context === 'cMenu2') {
+	      reactId = target.parentNode.dataset.reactid;
+	    } else if (target.nodeName === 'LI') {
+	      reactId = target.dataset.reactid;
+	    }
+	    objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$") + 1) + 1);
+	  } else if (context === 'folderRoot') {
+	    reactId = e.target.parentNode.dataset.reactid;
+	    objKey = reactId.substring(reactId.indexOf("$") + 1);
+	  }
+	  return objKey;
+	}
 	///////////////////////////////////////////////////////////////////////////////
 	//Define global variables
 	///////////////////////////////////////////////////////////////////////////////
@@ -210,8 +227,7 @@
 	    key: 'selectFolderRoot',
 	    value: function selectFolderRoot(event) {
 	      if (event.target.getAttribute('class') === 'liSpan') {
-	        var reactId = event.target.parentNode.dataset.reactid;
-	        var objKey = reactId.substring(reactId.indexOf("$") + 1);
+	        var objKey = getObjKey(event, 'folderRoot');
 	        var selectedObj = {};
 	        //set and clear selection status for root
 	        for (var i = 0; i < this.props.folderRoots.length; i++) {
@@ -289,18 +305,12 @@
 	      var type = 'Item';
 	      var owner = {};
 	      var level = 0;
+
 	      if (event.target.className === 'folderLevel') {
 	        type = 'Div';
 	        level = parseInt(event.target.dataset.reactid.substring(event.target.dataset.reactid.indexOf('$') + 1), 10);
 	      } else {
-	        var target = event.target;
-	        var reactId = '';
-	        if (target.nodeName === 'SPAN') {
-	          reactId = target.parentNode.dataset.reactid;
-	        } else if (target.nodeName === 'LI') {
-	          reactId = target.dataset.reactid;
-	        }
-	        var objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$") + 1) + 1);
+	        var objKey = getObjKey(event, 'cMenu');
 	        var trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
 	        owner = trail[trail.length - 1];
 	      }
@@ -336,9 +346,7 @@
 	  }, {
 	    key: 'cMenuFieldFocus',
 	    value: function cMenuFieldFocus(event) {
-	      var target = event.target;
-	      var reactId = target.parentNode.dataset.reactid;
-	      var objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$") + 1) + 1);
+	      var objKey = getObjKey(event, 'cMenu2');
 	      var trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
 	      var r = trail[trail.length - 1];
 	      this.state.customContextMenu.owner = r;
@@ -369,14 +377,7 @@
 	  }, {
 	    key: 'dragStartLi',
 	    value: function dragStartLi(event) {
-	      var target = event.target;
-	      var reactId = null;
-	      if (target.nodeName === 'SPAN') {
-	        reactId = target.parentNode.dataset.reactid;
-	      } else if (target.nodeName === 'LI') {
-	        reactId = target.dataset.reactid;
-	      }
-	      var objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$") + 1) + 1);
+	      var objKey = getObjKey(event, 'cMenu');
 	      var trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
 	      trail = trail[trail.length - 1];
 	      this.setState({
@@ -400,9 +401,7 @@
 	    key: 'dragOverLi',
 	    value: function dragOverLi(event) {
 	      event.preventDefault();
-	      var target = event.target;
-	      var reactId = reactId = target.parentNode.dataset.reactid;
-	      var objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$") + 1) + 1);
+	      var objKey = getObjKey(event, 'cMenu2');
 	      if ((this.state.dragAndDrop.objHovering === null || this.state.dragAndDrop.objHovering.key != objKey) && this.state.dragAndDrop.objDragging.key !== objKey) {
 	        var trail = findSelectionWrapper(this.state.selectionMap[0], objKey, false, false, false);
 	        trail = trail[trail.length - 1];
@@ -623,6 +622,7 @@
 	}(_react2.default.Component);
 
 	_react2.default.render(_react2.default.createElement(App, { folderRoots: folderRoots }), document.getElementById('app'));
+	console.log('refactor');
 
 /***/ },
 /* 1 */
