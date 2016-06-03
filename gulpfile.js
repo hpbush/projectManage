@@ -11,12 +11,13 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var rename = require('gulp-rename');
 var webpack = require('gulp-webpack');
+var babel = require('gulp-babel');
 
 
 // ////////////////////////////////////////////////////////////////////////////
-// build js
+// build jsx
 // ////////////////////////////////////////////////////////////////////////////
-gulp.task('buildJs', function(){
+gulp.task('buildJsx', function(){
   return gulp.src('src/app.jsx')
     .pipe(plumber())
     .pipe(webpack({
@@ -38,6 +39,17 @@ gulp.task('buildJs', function(){
 });
 
 // ////////////////////////////////////////////////////////////////////////////
+// build js
+// ////////////////////////////////////////////////////////////////////////////
+gulp.task('buildJs', function(){
+  return gulp.src('src/pages/projectHome.js')
+    .pipe(plumber())
+    .pipe(babel())
+    .pipe(gulp.dest('build'))
+    .pipe(reload({stream: true}));
+});
+
+// ////////////////////////////////////////////////////////////////////////////
 // index.jade => html
 // ////////////////////////////////////////////////////////////////////////////
 gulp.task('buildIndexHTML', function(){
@@ -54,7 +66,7 @@ gulp.task('buildIndexHTML', function(){
 // jade => html
 // ////////////////////////////////////////////////////////////////////////////
 gulp.task('buildHTML', function(){
-  return gulp.src('jade/components/**/*.jade')
+  return gulp.src('jade/components/*.jade')
     .pipe(plumber())
     .pipe(jade({
       pretty: true
@@ -93,9 +105,10 @@ gulp.task('watch', function(){
   gulp.watch('./sass/**/*.sass', ['buildCSS']);
   gulp.watch('jade/index.jade', ['buildIndexHTML']);
   gulp.watch('jade/components/**/*.jade', ['buildHTML', ['buildIndexHTML']]);
-  gulp.watch('src/**/*.jsx', ['buildJs']);
+  gulp.watch('src/**/*.jsx', ['buildJsx']);
+  gulp.watch('src/**/*.js', ['buildJs']);
 });
 // ////////////////////////////////////////////////////////////////////////////
 // Default
 // ////////////////////////////////////////////////////////////////////////////
-gulp.task('default', ['buildJs','buildIndexHTML', 'buildHTML', 'buildCSS', 'browser-sync', 'watch']);
+gulp.task('default', ['buildJsx','buildJs','buildIndexHTML', 'buildHTML', 'buildCSS', 'browser-sync', 'watch']);
