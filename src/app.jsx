@@ -82,9 +82,7 @@ function findSelectionWrapper(startLevel, objKey, selFlag, addFlag, addType, dro
 }
 
 function getObjKey(e, context){
-  let reactId = null;
-  let objKey = null;
-  let target = e.target;
+  let reactId = null, objKey = null, target = e.target;
   if(context === 'cMenu' || context === 'cMenu2'){
     if(target.nodeName === 'SPAN' || context === 'cMenu2'){
       reactId = target.parentNode.dataset.reactid;
@@ -93,7 +91,7 @@ function getObjKey(e, context){
     }
     objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$")+1)+1);
   }else if(context === 'folderRoot'){
-    reactId = e.target.parentNode.dataset.reactid;
+    reactId = target.parentNode.dataset.reactid;
     objKey = reactId.substring(reactId.indexOf("$")+1);
   }
   return objKey;
@@ -181,7 +179,7 @@ class App extends React.Component{
     if(typeof cMenuSelected === 'object'|| event.target.getAttribute('class') === 'folderSpan'){
       let reactId = cMenuSelected.key || event.target.parentNode.dataset.reactid;
       let objKey = cMenuSelected.key || reactId.substring(reactId.indexOf("$", reactId.indexOf("$")+1)+1);
-      let newSelection = findSelectionWrapper(this.state.selectionMap[0], objKey, true, false, false);
+      let newSelection = findSelectionWrapper(this.state.selectionMap[0], objKey, true, false, false, false, false);
       newSelection.splice(0,0,this.state.selectionMap[0]);
       this.setState({
         selectionMap: newSelection
@@ -448,4 +446,3 @@ class App extends React.Component{
   }
 }
 React.render(<App folderRoots = {folderRoots}/>, document.getElementById('app'));
-console.log('refactor');

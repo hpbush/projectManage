@@ -142,9 +142,9 @@
 	}
 
 	function getObjKey(e, context) {
-	  var reactId = null;
-	  var objKey = null;
-	  var target = e.target;
+	  var reactId = null,
+	      objKey = null,
+	      target = e.target;
 	  if (context === 'cMenu' || context === 'cMenu2') {
 	    if (target.nodeName === 'SPAN' || context === 'cMenu2') {
 	      reactId = target.parentNode.dataset.reactid;
@@ -153,7 +153,7 @@
 	    }
 	    objKey = reactId.substring(reactId.indexOf("$", reactId.indexOf("$") + 1) + 1);
 	  } else if (context === 'folderRoot') {
-	    reactId = e.target.parentNode.dataset.reactid;
+	    reactId = target.parentNode.dataset.reactid;
 	    objKey = reactId.substring(reactId.indexOf("$") + 1);
 	  }
 	  return objKey;
@@ -253,7 +253,7 @@
 	      if ((typeof cMenuSelected === 'undefined' ? 'undefined' : _typeof(cMenuSelected)) === 'object' || event.target.getAttribute('class') === 'folderSpan') {
 	        var reactId = cMenuSelected.key || event.target.parentNode.dataset.reactid;
 	        var objKey = cMenuSelected.key || reactId.substring(reactId.indexOf("$", reactId.indexOf("$") + 1) + 1);
-	        var newSelection = findSelectionWrapper(this.state.selectionMap[0], objKey, true, false, false);
+	        var newSelection = findSelectionWrapper(this.state.selectionMap[0], objKey, true, false, false, false, false);
 	        newSelection.splice(0, 0, this.state.selectionMap[0]);
 	        this.setState({
 	          selectionMap: newSelection
@@ -622,7 +622,6 @@
 	}(_react2.default.Component);
 
 	_react2.default.render(_react2.default.createElement(App, { folderRoots: folderRoots }), document.getElementById('app'));
-	console.log('refactor');
 
 /***/ },
 /* 1 */
