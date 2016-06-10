@@ -481,3 +481,52 @@ li {
       color: #fff; }
     .menu li span {
       margin-left: 10px; }
+
+.gantt_Housing {
+  height: 80%;
+  border: 1px solid black;
+  overflow: scroll; }
+
+.gantt_Chart {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  position: relative;
+  height: 75%;
+  width: 75%;
+  left: 12.5%;
+  top: 12.5%;
+  overflow: hidden; }
+
+.ganttDayDisplay {
+  position: relative;
+  top: 0px;
+  height: 100%; }
+
+.taskDiv {
+  position: absolute;
+  left: 0px;
+  height: 50px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+.ganttDayDisplayLabel {
+  position: absolute;
+  top: 50px;
+  left: -50%;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  width: 90px; }
+
+.taskDivLabel {
+  position: relative; }

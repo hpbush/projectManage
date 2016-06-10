@@ -93,7 +93,8 @@ gulp.task('buildCSS', function(){
 gulp.task('browser-sync', function(){
   browserSync({
     server:{
-      baseDir: './'
+      baseDir: './',
+      index: 'pages/projectHome.html'
     }
   });
 });

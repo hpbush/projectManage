@@ -446,7 +446,3 @@ class App extends React.Component{
   }
 }
 React.render(<App folderRoots = {folderRoots}/>, document.getElementById('app'));
-<<<<<<< HEAD
-console.log("master");
-=======
->>>>>>> 09e1e528ff5b71854c1e48e1ceddce98a5dda3c6
