@@ -503,6 +503,12 @@ li {
 
 .ganttDayDisplay {
   position: relative;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   top: 0px;
   height: 100%; }
 
@@ -521,12 +527,16 @@ li {
           justify-content: center; }
 
 .ganttDayDisplayLabel {
-  position: absolute;
-  top: 50px;
-  left: -50%;
+  position: relative;
+  top: 20px;
+  border: 1px solid red;
   -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  width: 90px; }
+          transform: rotate(90deg); }
 
 .taskDivLabel {
   position: relative; }
+
+#addTask {
+  position: absolute;
+  top: 700px;
+  left: 50px; }

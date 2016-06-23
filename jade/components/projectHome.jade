@@ -4,4 +4,11 @@ html
   body
     .gantt_Housing(id = 'gantt_Housing')
       .gantt_Chart(id = 'gantt_Chart')
+      form(id = 'addTask')
+        input(id = 'taskName' placeholder = 'task name')
+        input(id = 'duration' placeholder = 'duration')
+        input(id = 'startDate' placeholder = 'startDate' type = 'date')
+        input(id = 'parentTaskList' placeholder = 'parent Tasks')
+        button(id = 'submitTask') Add Task
+    include ./taskEditPopUp.Jade
   script(src = '../build/projectHome.js')
