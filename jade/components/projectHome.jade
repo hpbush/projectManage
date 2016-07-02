@@ -1,14 +1,15 @@
 html 
   head
     link(rel="stylesheet" type="text/css" href="../css/main.css")
+    link(rel="stylesheet" type="text/css" href="../resources/font-awesome-4.5.0/css/font-awesome.min.css")
   body
     .gantt_Housing(id = 'gantt_Housing')
       .gantt_Chart(id = 'gantt_Chart')
       form(id = 'addTask')
         input(id = 'taskName' placeholder = 'task name')
-        input(id = 'duration' placeholder = 'duration')
+        input(id = 'targetDuration' placeholder = 'duration')
         input(id = 'startDate' placeholder = 'startDate' type = 'date')
         input(id = 'parentTaskList' placeholder = 'parent Tasks')
         button(id = 'submitTask') Add Task
-    include ./taskEditPopUp.Jade
+    include ./taskEditPopUp.jade
   script(src = '../build/projectHome.js')

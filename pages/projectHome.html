@@ -2,16 +2,47 @@
 <html> 
   <head>
     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../resources/font-awesome-4.5.0/css/font-awesome.min.css"/>
   </head>
   <body>
     <div id="gantt_Housing" class="gantt_Housing">
       <div id="gantt_Chart" class="gantt_Chart"></div>
       <form id="addTask">
         <input id="taskName" placeholder="task name"/>
-        <input id="duration" placeholder="duration"/>
+        <input id="targetDuration" placeholder="duration"/>
         <input id="startDate" placeholder="startDate" type="date"/>
         <input id="parentTaskList" placeholder="parent Tasks"/>
         <button id="submitTask">Add Task</button>
+      </form>
+    </div>
+    <div id="taskEditPopUp" class="popUp hide">
+      <form><i id="taskEditCloseBtn" class="fa fa-times"> </i>
+        <label id="nameLabel" class="popUpLabel">Name:
+          <input id="namePopUp" defaultValue="" type="textBox" class="popUpField"/>
+        </label>
+        <label id="targetDurationLabel" class="popUpLabel">Target Duration:
+          <p id="targetDurationPopUp" class="popUpField"></p>
+        </label>
+        <label id="trueDurationLabel" class="popUpLabel">True Duration:
+          <p id="trueDurationPopUp" class="popUpField"></p>
+        </label>
+        <label id="delayLabel" class="popUpLabel">Delay:
+          <input id="delayPopUp" defaultValue="" type="textBox" class="popUpField"/>
+        </label>
+        <label id="startDateLabel" class="popUpLabel">Start Date:
+          <input id="startDatePopUp" defaultValue="" type="date" class="popUpField"/>
+        </label>
+        <label id="targetEndDateLabel" class="popUpLabel">Target End Date:
+          <input id="targetEndDatePopUp" defaultValue="" type="date" class="popUpField"/>
+        </label>
+        <label id="trueEndDateLabel" class="popUpLabel">Projected End Date:
+          <p id="trueEndDatePopUp" defaultValue="" type="date" class="popUpField"></p>
+        </label>
+        <label id="dependencyListLabel">Dependency List
+          <div class="dependencyList"></div>
+        </label>
+        <button id="addDependencyBtn" class="popUpButton">Add Dependency</button>
+        <button id="popUpSubmitBtn" class="popUpButton">Submit</button>
       </form>
     </div>
   </body>

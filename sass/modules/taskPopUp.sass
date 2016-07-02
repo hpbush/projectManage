@@ -1,0 +1,85 @@
+.popUp
+  position: fixed
+  top: 33%
+  left: 33%
+  height: 500px
+  width: 500px
+  padding: 10px 10px
+  border: 1px solid #000
+  box-shadow: 10px 10px 10px #777
+  background-color: white
+  #dependencyListLabel
+    position: absolute
+    top: 50%
+    width: 100%
+    .dependencyList
+      height: 180px
+      width: 75%
+      overflow-y: scroll
+      border: 1px solid green
+  .popUpButton
+    height: 30px
+    border: none
+    border-radius: 5px
+    &:hover
+      background-color: black
+      color: white
+  #addDependencyBtn
+    position: absolute
+    bottom: 33%
+    right: 10px
+  .popUpLabel
+    position: absolute
+  #nameLabel
+    top: 5%
+    left: 5%
+  #targetDurationLabel
+    top: 5%
+    left: 50%
+  #trueDurationLabel
+    left: 50%
+    top: 10%
+  #startDateLabel
+    top: 15%
+    left: 5%
+  #targetEndDateLabel
+    top: 15%
+    left: 50%
+  #trueEndDateLabel
+    top: 25%
+    left: 50%
+  #delayLabel
+    top: 25%
+    left: 5%
+  #taskEditCloseBtn
+    position: absolute
+    top: 5px
+    right: 5px
+    transform: scale(1.3)
+    color: #B81122
+    &:hover
+      transition: color .5s
+      color: black
+  #popUpSubmitBtn
+    position: absolute
+    bottom: 10px
+    left: 50%
+  #targetDurationPopUp
+    position: absolute
+    top: 0px
+    right: -15px
+    margin: 0px
+  #trueDurationPopUp
+    position: absolute
+    top: 0px
+    right: -15px
+    margin: 0px
+.hide
+  display: none
+.show
+  display: default
+.taskDiv
+  overflow: hidden
+  .taskDivChild
+    position: absolute
+    height: 100%
