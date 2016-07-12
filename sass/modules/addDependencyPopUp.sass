@@ -1,2 +1,43 @@
 .addDependencyPopUp
-  border: 1px solid red
+  position: absolute
+  bottom: 0px
+  width: 200px
+  height: 30px
+  left: 50%
+  bottom: 0px
+  transition: transform .3s ease-in-out
+  .hide
+    transform: translateY(20px)
+  form
+    position: absolute
+    display: flex
+    justify-content: space-around
+    align-items: center
+    left: -50%
+    width: 100%
+    height: 100%
+    margin: 0px
+    background-color: #ddd
+    border: 2px solid #888
+    border-bottom: none
+    border-radius: 5px 5px 0px 0px
+    box-shadow: 2px 5px 10px 3px #777
+
+    .Btn
+      height: 75%
+      border: 2px solid black
+      border-radius: 15%
+      color: #fff
+      transition: background-color .1s ease-in-out, color .1s ease-in-out
+      cursor: pointer
+      outline: 0
+      &:hover
+        background-color: white
+        color: #666
+      &:active
+        box-shadow: inset 2px 2px 5px #666
+        color: #000
+    .confirmBtn
+      background-color: #23B530
+    .cancelBtn
+      background-color: #D2484D

@@ -1,6 +1,5 @@
 div(id = 'taskEditPopUp' class = 'popUp hide')
   form
-    i(id = 'taskEditCloseBtn' class = 'fa fa-times') 
     label(id = 'nameLabel' class = 'popUpLabel') Name:
       input(id = 'namePopUp' class = 'popUpField' defaultValue = '' type = 'textBox')
     label(id = 'targetDurationLabel' class = 'popUpLabel') Target Duration:
@@ -16,6 +15,7 @@ div(id = 'taskEditPopUp' class = 'popUp hide')
     label(id = 'trueEndDateLabel' class = 'popUpLabel') Projected End Date:
       p(id = 'trueEndDatePopUp' class = 'popUpField' defaultValue = '' type = 'date')
     label(id = 'dependencyListLabel') Dependency List
-      .dependencyList
+    .dependencyList
+      ul(id = 'dependencyUL' class = 'popUpUL')
     button(id = 'addDependencyBtn' class = 'popUpButton') Add Dependency
     button(id = 'popUpSubmitBtn' class = 'popUpButton') Submit

@@ -5,18 +5,36 @@
     <link rel="stylesheet" type="text/css" href="../resources/font-awesome-4.5.0/css/font-awesome.min.css"/>
   </head>
   <body>
-    <div id="gantt_Housing" class="gantt_Housing">
-      <div id="gantt_Chart" class="gantt_Chart"></div>
-      <form id="addTask">
-        <input id="taskName" placeholder="task name"/>
-        <input id="targetDuration" placeholder="duration"/>
-        <input id="startDate" placeholder="startDate" type="date"/>
-        <input id="parentTaskList" placeholder="parent Tasks"/>
-        <button id="submitTask">Add Task</button>
-      </form>
+    <div class="window">
+      <div id="gantt_Housing" class="gantt_Housing">
+        <div id="gantt_Chart" class="gantt_Chart"></div>
+        <div id="addDependencyPopUp" class="addDependencyPopUp hide">
+          <form id="addDependencyPopUp" class="smPopUp">
+            <button id="addDependencyConfirm" class="confirmBtn Btn">Accept</button>
+            <button id="addDependencyCancel" class="cancelBtn Btn">Cancel</button>
+          </form>
+        </div>
+      </div>
+      <div class="addTaskDiv">
+        <form id="addTask">
+          <label id="taskNameAddLabel" class="label">Name
+            <input id="taskName" placeholder="task name"/>
+          </label>
+          <label id="durationAddLabel" class="label">Duration
+            <input id="targetDuration" placeholder="duration"/>
+          </label>
+          <label id="startDateAddLabel" class="label">Start Date
+            <input id="startDate" placeholder="startDate" type="date"/>
+          </label>
+          <label id="endDateAddLabel" class="label">Dependencies
+            <input id="parentTaskList" placeholder="dependencies"/>
+          </label>
+          <button id="submitTask">Add Task</button>
+        </form>
+      </div>
     </div>
     <div id="taskEditPopUp" class="popUp hide">
-      <form><i id="taskEditCloseBtn" class="fa fa-times"> </i>
+      <form>
         <label id="nameLabel" class="popUpLabel">Name:
           <input id="namePopUp" defaultValue="" type="textBox" class="popUpField"/>
         </label>
@@ -38,9 +56,10 @@
         <label id="trueEndDateLabel" class="popUpLabel">Projected End Date:
           <p id="trueEndDatePopUp" defaultValue="" type="date" class="popUpField"></p>
         </label>
-        <label id="dependencyListLabel">Dependency List
-          <div class="dependencyList"></div>
-        </label>
+        <label id="dependencyListLabel">Dependency List</label>
+        <div class="dependencyList">
+          <ul id="dependencyUL" class="popUpUL"></ul>
+        </div>
         <button id="addDependencyBtn" class="popUpButton">Add Dependency</button>
         <button id="popUpSubmitBtn" class="popUpButton">Submit</button>
       </form>

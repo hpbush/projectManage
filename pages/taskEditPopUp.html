@@ -1,6 +1,6 @@
 
 <div id="taskEditPopUp" class="popUp hide">
-  <form><i id="taskEditCloseBtn" class="fa fa-times"> </i>
+  <form>
     <label id="nameLabel" class="popUpLabel">Name:
       <input id="namePopUp" defaultValue="" type="textBox" class="popUpField"/>
     </label>
@@ -22,9 +22,10 @@
     <label id="trueEndDateLabel" class="popUpLabel">Projected End Date:
       <p id="trueEndDatePopUp" defaultValue="" type="date" class="popUpField"></p>
     </label>
-    <label id="dependencyListLabel">Dependency List
-      <div class="dependencyList"></div>
-    </label>
+    <label id="dependencyListLabel">Dependency List</label>
+    <div class="dependencyList">
+      <ul id="dependencyUL" class="popUpUL"></ul>
+    </div>
     <button id="addDependencyBtn" class="popUpButton">Add Dependency</button>
     <button id="popUpSubmitBtn" class="popUpButton">Submit</button>
   </form>

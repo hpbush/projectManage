@@ -8,15 +8,7 @@
   border: 1px solid #000
   box-shadow: 10px 10px 10px #777
   background-color: white
-  #dependencyListLabel
-    position: absolute
-    top: 50%
-    width: 100%
-    .dependencyList
-      height: 180px
-      width: 75%
-      overflow-y: scroll
-      border: 1px solid green
+  transition: transform .3s ease-in-out
   .popUpButton
     height: 30px
     border: none
@@ -74,12 +66,38 @@
     top: 0px
     right: -15px
     margin: 0px
+  #dependencyListLabel
+    position: absolute
+    top: 50%
+    width: 100%
+  .dependencyList
+    position: absolute
+    top: 55%
+    height: 180px
+    width: 75%
+    overflow-y: scroll
+    overflow-x: hidden
+    border: 1px solid black
+    .popUpUL
+      position: absolute
+      top: 0px
+      left: 0px
+      width: 100%
+      margin: 0
+      padding: 0
+      li
+        list-style-type: none
+        display: flex
+        align-items: center
+        border-bottom: 1px solid #ccc
+        height: 30px
+        width: 100%
+        left: 0
+        font-size: 18px
+        padding-left: 10px
+
 .hide
-  display: none
+  //display: none
+  transform: translateY(700px)
 .show
   display: default
-.taskDiv
-  overflow: hidden
-  .taskDivChild
-    position: absolute
-    height: 100%
