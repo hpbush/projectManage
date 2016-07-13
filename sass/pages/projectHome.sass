@@ -1,15 +1,15 @@
 .window
   position: absolute
-  height: 80%
+  height: 800px
   width: 95vw
-  border: 1px solid black
+  border: 1px solid #777
   overflow: hidden
 
 .gantt_Housing
   position: absolute
   width: 80%
   height: 100%
-  left: 20%
+  left: 200px
   display: flex
   justify-content: space-around
   align-items: center
@@ -17,34 +17,61 @@
 .addTaskDiv
   position: absolute
   display: flex
-  border-right: 3px solid black
+  border-right: 3px solid #777
   top: 0px
-  height: 100%
-  width: 20%
-  background-color: #aaa
+  height: 800px
+  width: 200px
+  background-color: #ddd
   .label
     position: absolute
-    left: 20px
+    left: 5px
+  .input
+    position: absolute
+    top: 0px
+    left: 80px
+    width: 110px
   #taskNameAddLabel
     top: 10%
   #durationAddLabel
     top: 30%
   #startDateAddLabel
     top: 50%
-  #endDateAddLabel
+  #startDate
+    font-size: 10px
+  #dependenciesLabel
     top: 70%
+  #parentTaskList
+    top: 20px
+    left: 0px
+    width: 200%
+    text-align: justify
   #submitTask
     position: absolute
+    width: 100px
+    height: 30px
+    left: 50px
     top: 90%
+    cursor: pointer
+    background-color: #23B530
+    border: 2px solid black
+    border-radius: 15%
+    color: white
+    transition: background-color .1s ease-in-out, color .1s ease-in-out
+    &:hover
+      background-color: white
+      color: #666
 
 .gantt_Chart
   display: flex
   justify-content: space-around
   position: relative
-  //height: 80%
+  border: 1px solid #777
+  border-radius: 7px
   width: 90%
   height: 90%
-  overflow: hidden
+  overflow-y: scroll
+  overflow-x: hidden
+  box-shadow: 0px 0px 50px 0px #999
 
 .ganttDayDisplay
   position: relative
@@ -52,6 +79,7 @@
   align-items: flex-start
   top: 0px
   height: 100%
+  overflow: visible
 
 .taskDiv
   position: absolute
@@ -70,16 +98,9 @@
     position: absolute
     height: 100%
 .ganttDayDisplayLabel
-  position: relative
+  position: fixed
   top: 20px
-  border: 1px solid red
-  transform: rotate(90deg)
+  transform: rotate(45deg)
 
 .taskDivLabel
   position: relative
-
-//.taskDiv
-  overflow: hidden
-  .taskDivChild
-    position: absolute
-    height: 100%

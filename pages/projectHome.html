@@ -17,17 +17,17 @@
       </div>
       <div class="addTaskDiv">
         <form id="addTask">
-          <label id="taskNameAddLabel" class="label">Name
-            <input id="taskName" placeholder="task name"/>
+          <label id="taskNameAddLabel" class="label">Name:
+            <input id="taskName" class="input"/>
           </label>
-          <label id="durationAddLabel" class="label">Duration
-            <input id="targetDuration" placeholder="duration"/>
+          <label id="durationAddLabel" class="label">Duration:
+            <input id="targetDuration" class="input"/>
           </label>
-          <label id="startDateAddLabel" class="label">Start Date
-            <input id="startDate" placeholder="startDate" type="date"/>
+          <label id="startDateAddLabel" class="label">Start Date:
+            <input id="startDate" type="date" class="input"/>
           </label>
-          <label id="endDateAddLabel" class="label">Dependencies
-            <input id="parentTaskList" placeholder="dependencies"/>
+          <label id="dependenciesLabel" class="label">Dependencies:
+            <input id="parentTaskList" class="input"/>
           </label>
           <button id="submitTask">Add Task</button>
         </form>
@@ -50,10 +50,10 @@
         <label id="startDateLabel" class="popUpLabel">Start Date:
           <input id="startDatePopUp" defaultValue="" type="date" class="popUpField"/>
         </label>
-        <label id="targetEndDateLabel" class="popUpLabel">Target End Date:
+        <label id="targetEndDateLabel" class="popUpLabel">Target End:
           <input id="targetEndDatePopUp" defaultValue="" type="date" class="popUpField"/>
         </label>
-        <label id="trueEndDateLabel" class="popUpLabel">Projected End Date:
+        <label id="trueEndDateLabel" class="popUpLabel">Projected End:
           <p id="trueEndDatePopUp" defaultValue="" type="date" class="popUpField"></p>
         </label>
         <label id="dependencyListLabel">Dependency List</label>

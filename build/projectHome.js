@@ -32,7 +32,7 @@ let gantt = {
     this.calendar.endDate = new Date(startDate.getTime() + this.calendar.numDisplayDays * 86400000);
     for (let i = 0; i < this.calendar.numDisplayDays; i++) {
       let displayDate = new Date(startDate.getTime() + i * 86400000);
-      let id = displayDate.getUTCMonth() + " / " + displayDate.getUTCDate() + " / " + displayDate.getUTCFullYear();
+      let id = displayDate.getUTCMonth() + 1 + " / " + displayDate.getUTCDate() + " / " + displayDate.getUTCFullYear();
       let className = 'ganttDayDisplay';
       let style = {
         width: 100 / gantt.calendar.numDisplayDays + '%',
@@ -43,10 +43,11 @@ let gantt = {
       }
       this.createDiv(id, className, style);
     }
+    gantt.reassignLabelPercent();
   },
 
   graphTasks: function () {
-    let vertOffSet = 2;
+    let vertOffSet = .2;
     for (let i = 0; i < this.taskList.length; i++) {
       //check to see if task is in range of calendar
       if (this.taskList[i].startDate >= this.calendar.startDate && this.taskList[i].startDate < this.calendar.endDate) {
@@ -130,6 +131,17 @@ let gantt = {
     parent.appendChild(div);
   },
 
+  reassignLabelPercent: function () {
+    let divList = document.querySelectorAll('.ganttDayDisplay');
+    let width = divList[0].getBoundingClientRect().width / 2;
+    for (let i = 0; i < divList.length; i++) {
+      let label = divList[i].firstChild;
+      let labelWidth = label.getBoundingClientRect().width,
+          labelMidPoint = labelWidth / 2;
+      let left = divList[i].getBoundingClientRect().left;
+      label.style.left = (left + width - labelMidPoint) / window.innerWidth * 100 + '%';
+    }
+  },
   //////////////////////////////////////////////////////////////////////////////
   //task creation / manipulation
   //////////////////////////////////////////////////////////////////////////////
@@ -227,7 +239,7 @@ let gantt = {
     task.element = element;
     task.element.addEventListener('click', function (e) {
       if (gantt.state.selectDependencyMode.active === false) {
-        gantt.clickTask(task);
+        gantt.clickTask(task, e);
       } else {
         gantt.state.selectDependencyMode.clickedObj = task;
         gantt.selectTaskForDependency(e);
@@ -307,8 +319,9 @@ let gantt = {
     console.log("buildGantt");
   },
 
-  clickTask: function (task) {
+  clickTask: function (task, e) {
     //opens the popUP
+    console.log(e);
     if (this.state.selectedTask) {
       this.state.selectedTask.element.setAttribute('class', 'taskDiv');
     }
@@ -339,8 +352,11 @@ let gantt = {
     for (let i = 0; i < task.parentTaskList.length; i++) {
       let parent = gantt.findTask(task.parentTaskList[i]);
       let li = document.createElement('li');
+      let deleteBtn = document.createElement('i');
       let text = document.createTextNode(parent.name);
+      deleteBtn.setAttribute('class', 'fa fa-trash-o');
       li.appendChild(text);
+      li.appendChild(deleteBtn);
       depList.appendChild(li);
       li.addEventListener('click', function () {
         console.log(parent);
@@ -500,3 +516,4 @@ document.getElementById('addDependencyCancel').addEventListener('click', functio
   gantt.dependencyDecide(e, false);
 }, false);
 document.getElementById('popUpSubmitBtn').addEventListener('click', gantt.editTask, false);
+window.addEventListener('resize', gantt.reassignLabelPercent, false);
